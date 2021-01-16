@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config({path: './.env'});
 const createCheckoutSession = require('./api/checkout');
+const paymentIntent = require('./api/paymentIntent');
 const webhook = require('./api/webhook');
 
 const app = express();
@@ -16,6 +17,8 @@ app.use(cors({ origin: true }));
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.post('/create-checkout-session', createCheckoutSession);
+
+app.post('/create-payment-intent', paymentIntent);
 
 app.post('/webhook', webhook);
 
