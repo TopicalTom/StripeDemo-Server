@@ -4,6 +4,7 @@ require('dotenv').config({path: './.env'});
 const createCheckoutSession = require('./api/checkout');
 const paymentIntent = require('./api/paymentIntent');
 const webhook = require('./api/webhook');
+const decodeJWT = require('./auth/decodeJWT');
 
 const app = express();
 const port = 8080;
@@ -13,6 +14,8 @@ app.use(express.json({
     
 }));
 app.use(cors({ origin: true }));
+
+app.use(decodeJWT);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
