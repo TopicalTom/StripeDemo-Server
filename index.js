@@ -2,11 +2,11 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config({path: './.env'});
 const createCheckoutSession = require('./api/checkout');
-const paymentIntent = require('./api/paymentIntent');
 const webhook = require('./api/webhook');
+const paymentIntent = require('./api/paymentIntent');
 const decodeJWT = require('./auth/decodeJWT');
 const setupIntent = require('./api/setupIntent');
-const validateUser = require('./api/validateUser');
+const validateUser = require('./auth/validateUser');
 const getCards = require('./api/getPaymentMethod');
 const updatePaymentIntent = require('./api/updatePaymentIntent');
 
@@ -14,9 +14,9 @@ const app = express();
 const port = 8080;
 
 app.use(express.json({
-    verify: (req, res, buffer) => req['rawBody'] = buffer,
-    
+    verify: (req, res, buffer) => req['rawBody'] = buffer, 
 }));
+
 app.use(cors({ origin: true }));
 
 app.use(decodeJWT);

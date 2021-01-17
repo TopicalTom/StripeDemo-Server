@@ -25,7 +25,7 @@ async function getCustomer(userId) {
         return createCustomer(userId);
     }
 
-    customer = await stripeAPI.customers.retrieve(stripeCustomerId);
+    const customer = await stripeAPI.customers.retrieve(stripeCustomerId);
     return customer;
 }
 
